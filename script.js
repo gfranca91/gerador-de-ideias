@@ -1,4 +1,3 @@
-// Array com as ideias de projetos criativos
 const creativeIdeas = [
   "Um gerador de paletas de cores aleatórias para designers.",
   "Uma calculadora de tempo para cozinhar um ovo perfeito (mole, médio, duro).",
@@ -40,26 +39,20 @@ const creativeIdeas = [
   "Um site que lista um 'desafio de programação fácil do dia'.",
 ];
 
-// 1. Pegar os elementos HTML que vamos manipular
 const generateButton = document.getElementById("generateButton");
 const ideaDisplay = document.getElementById("ideaDisplay");
-const themeToggleButton = document.getElementById("themeToggleButton"); // Novo elemento: botão de tema
-const body = document.body; // Pegar o elemento <body>
+const themeToggleButton = document.getElementById("themeToggleButton");
+const body = document.body;
 
-// 2. Criar a função que gera uma ideia aleatória
 function generateIdea() {
   const randomIndex = Math.floor(Math.random() * creativeIdeas.length);
   const randomIdea = creativeIdeas[randomIndex];
   ideaDisplay.textContent = randomIdea;
 }
 
-// 3. Criar a função que alterna o tema
 function toggleTheme() {
-  // toggle() adiciona a classe se ela não estiver presente, ou a remove se estiver
   body.classList.toggle("dark-theme");
 
-  // Opcional: Salvar a preferência do usuário no armazenamento local (localStorage)
-  // Isso fará com que o tema escolhido persista mesmo se o usuário fechar a página
   if (body.classList.contains("dark-theme")) {
     localStorage.setItem("theme", "dark");
   } else {
@@ -67,16 +60,14 @@ function toggleTheme() {
   }
 }
 
-// 4. Adicionar "escutadores de eventos" (event listeners) aos botões
 generateButton.addEventListener("click", generateIdea);
-themeToggleButton.addEventListener("click", toggleTheme); // Novo: escutador para o botão de tema
+themeToggleButton.addEventListener("click", toggleTheme);
 
-// Opcional: Carregar a preferência de tema do usuário ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     body.classList.add("dark-theme");
   }
-  // Gerar uma ideia na primeira vez que a página carrega
+
   generateIdea();
 });
